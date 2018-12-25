@@ -1,7 +1,7 @@
 <template>
     <div>
         vue 主页测试
-        <div class="th1">主题11</div>
+        <div class="  th1 th2">主题11</div>
         <h1>{{msg}}</h1>
         <p>hello,<span data-title="frontend develop">fed</span></p>
         <div class="choose">
@@ -56,10 +56,15 @@ export default {
 .count::before {
   content: counter(fruit);
 }
+.th2 {
+  color: blueviolet;
+  font-weight: bold;
+}
 .th1 {
   color: aqua;
   font-weight: bold;
 }
+
 span[data-title] {
   position: relative;
 }

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="background: black;">
+    <div></div>
+    <div style="position: relative;">
+        <canvas id="posterImg" width=“287” height="500">
+
+                </canvas>
+        <div style="    position: absolute;bottom: -60px;">
+            <img src="https://asset.imuge.net/FtUtZViY3E-mZbfi88K92ciIEhNj">
+        </div>
+        <button style="position: relative;left: 270px;" class="button-balanced" id="paint">paint</button>
+        <button style="position: relative;left: 300px;" class="button-balanced" id="save">save</button>
+    </div>
+
+
+    <a href="" download="canvas_poster" id="save_href"></a>
+    <img src="" id="save_img" />
+</body>
+<script>
+    var goods = {
+        title: '藕粉桂💰花😯糖🏃糕哦是的群我IE一诶诶1113232殴我就方可进入滴滴滴',
+        price: 188,
+        originPrice: 1990,
+        count: 3,
+        comment: '小伙伴们我刚刚发起了一个拼团活动，我们一起很换算。',
+        president: 'Apple林',
+        presidentHeadImg: 'https://asset.imuge.net/Fk3MrZVv2EmRBRYSLAghOxgel7Vd',
+        qrcode: 'https://asset.imuge.net/INVITATION_9befae47-9a71-4b4d-ba7e-d2f4eb1b692e.png',
+        goodsImg: 'https://asset.imuge.net/FuksMU6IS-7Yfg-0e0yJEG2sb1C8',
+
+
+
+
+    }
+    var logo = "https://asset.imuge.net/FjQ3439rUJhCcX3-UiTV9Xlz6Y11";
+    //藕粉桂💰花😯糖🏃糕
+    //logo  https://asset.imuge.net/FjQ3439rUJhCcX3-UiTV9Xlz6Y11
+    var bottom = "https://asset.imuge.net/Ft71bInRgyUkgz7gA5NJusGE5FEN";
+    var canvas = document.getElementById('posterImg');
+
+    function paint() {
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            bgLayer(ctx, 0, 0, 300, 600, 10, "#ffffff", "#ff0000")
+            titleLayer(300, ctx);
+            goodsImgLayer(300, 240, ctx, 10, 100);
+            goodsTitleLayer(ctx, 280, 10, 340);
+            //ctx.clearRect(0, 100, 280, 250);
+            imgToCircle(ctx, 20, 400, 20, 40, goods.presidentHeadImg, null, "blue")
+            bottomLayer(ctx, 0, 440, 10, 287, bottom)
+                //goodsLayer(280, 240, ctx, 0, 100)
+                // textWrap(ctx, "可视对讲付款时间的反馈了时间对方离开时间的反馈世纪东方抗裂砂浆待付款", 280, 20, 26, null, "green", "20px serif")
+        } else {
+
+        }
+    }
+
+    function bgLayer(ctx, x, y, w, h, radius, fillStyle, strokeStyle) {
+        ctx.strokeStyle = '#ff0000';
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath();
+        ctx.arc(radius, radius, radius, 1 * Math.PI, 1.5 * Math.PI, false);
+        // ctx.stroke();
+        //上面的线
+        //ctx.beginPath(); //新建一条path
+        // ctx.moveTo(10, 0); //把画笔移动到指定的坐标
+        ctx.lineTo(w - radius, 0); //绘制一条从当前位置到指定坐标(200, 50)的直线.
+        // //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+        // ctx.closePath();
+        // ctx.stroke(); //绘制路径
+
+        // ctx.beginPath();
+        ctx.arc(w - radius, radius, radius, 1.5 * Math.PI, 2 * Math.PI, false);
+        // ctx.stroke();
+        //右侧的线
+        // ctx.beginPath(); //新建一条path
+        // ctx.moveTo(287, 10); //把画笔移动到指定的坐标
+        ctx.lineTo(w, h - radius); //绘制一条从当前位置到指定坐标(200, 50)的直线.
+        // //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+        // ctx.closePath();
+
+        // ctx.stroke(); //绘制路径
+        //  ctx.beginPath();
+        ctx.arc(w - radius, h - radius, radius, 0, 0.5 * Math.PI, false);
+        // ctx.stroke();
+        //下面侧的线
+        // ctx.beginPath(); //新建一条path
+        // ctx.moveTo(277, 500); //把画笔移动到指定的坐标
+        ctx.lineTo(radius, h); //绘制一条从当前位置到指定坐标(200, 50)的直线.
+        // //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+        // ctx.closePath();
+        // ctx.stroke(); //绘制路径
+        // ctx.beginPath();
+        ctx.arc(radius, h - radius, radius, 0.5 * Math.PI, 1 * Math.PI, false);
+        // ctx.stroke();
+        //左侧的线
+        // ctx.beginPath(); //新建一条path
+        // ctx.moveTo(0, 490); //把画笔移动到指定的坐标
+        ctx.lineTo(0, radius); //绘制一条从当前位置到指定坐标(200, 50)的直线.
+        // //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+        //ctx.closePath();
+        //ctx.stroke(); //绘制路径
+        ctx.fill();
+    }
+
+    function roundRect(ctx, x, y, w, h, radius, fillStyle, strokeStyle) {
+        strokeStyle != null && (ctx.strokeStyle = strokeStyle);
+        fillStyle != null && (ctx.fillStyle = fillStyle);
+
+        ctx.beginPath();
+        ctx.arc(x + radius, y + radius, radius, 1 * Math.PI, 1.5 * Math.PI, false);
+        ctx.lineTo(x + w - 1 * radius, y);
+        ctx.arc(x + w - 1 * radius, radius + y, radius, 1.5 * Math.PI, 2 * Math.PI, false);
+        ctx.lineTo(x + w, y + h - 1 * radius);
+        ctx.arc(x + w - 1 * radius, y + h - 1 * radius, radius, 0, 0.5 * Math.PI, false);
+        ctx.lineTo(x + radius, y + h);
+        ctx.arc(x + radius, y + h - radius, radius, 0.5 * Math.PI, 1 * Math.PI, false);
+        ctx.lineTo(x, y + radius);
+        ctx.fill();
+    }
+
+    function titleLayer(width, canvas) {
+        var layer1 = document.createElement('canvas');
+        layer1.width = 280;
+        layer1.height = 300;
+        var layer1_canvas = layer1.getContext('2d');
+        textWrap(layer1_canvas, "可视对讲付款wejejejje时间的反馈了时间对方离开时间的反馈世纪东方抗裂砂浆待付款", 280, 0, 0, 20, 26, null, "green", "20px serif")
+
+        //.......
+        //https://zhidao.baidu.com/question/1695087727595675468.html
+        //.....
+        canvas.save() //用来显示的canvas
+            // canvas.globalCompositeOperation = "destination-over"; //设置多个图层如何混合，这个可以百度canvas混合模式，这个和PS是相近的
+        canvas.drawImage(layer1, 0, 0, 280, 300)
+            // canvas.drawImage(layer2, 0, 0, 800, 600, 0, 0, 800, 600)
+        canvas.restore();
+    }
+
+    function goodsTitleLayer(ctx, w, x, y) {
+        var str = goods.title;
+
+        textWrap(ctx, str, 280, x, y, 30, 18, null, "green", "12px serif");
+    }
+
+    function goodsImgLayer(width, imgMaxW, canvas1, x, y) {
+
+        let image = new Image()
+            // 解决跨域 Canvas 污染问题
+        image.setAttribute('crossOrigin', 'anonymous');
+        let imgType = "image/png";
+        // let paths = imgurl.split(".");
+        // let type = (paths && paths.length > 0 ? paths[paths.length - 1] : null);
+        // if (paths && paths.length > 1 && name == null) {
+        //     name = paths[paths.length - 2]
+        // }
+
+        //type != null ? imgType = "image/" + type.toLowerCase() : '';
+        image.onload = function() {
+            var w = image.width > imgMaxW ? imgMaxW : image.width;
+            var h = w * image.height / image.width;
+            console.log("w=", w, "h=", h)
+            var canvas = document.createElement('canvas')
+            canvas.width = w
+            canvas.height = h
+
+            var context = canvas.getContext('2d')
+
+            context.drawImage(image, 0, 0, w, h)
+                //var url = canvas.toDataURL(imgType)
+                //https://blog.csdn.net/fxss5201/article/details/79691923
+                //http://www.fxss5201.cn/project/html/canvas/circleImg/
+            canvas1.save()
+            roundRect(canvas1, x, y, w, h, 10, "white")
+            canvas1.clip();
+
+            canvas1.drawImage(canvas, x, y - 10, w, h + 20)
+            canvas1.restore();
+        }
+
+        image.src = goods.goodsImg;
+        // canvas.drawImage(layer1, 0, 0, 280, 300)
+
+    }
+
+    function goodsLayer(width, imgMaxW, canvas1, x, y) {
+        let image = new Image()
+            // 解决跨域 Canvas 污染问题
+        image.setAttribute('crossOrigin', 'anonymous');
+        let imgType = "image/png";
+        // let paths = imgurl.split(".");
+        // let type = (paths && paths.length > 0 ? paths[paths.length - 1] : null);
+        // if (paths && paths.length > 1 && name == null) {
+        //     name = paths[paths.length - 2]
+        // }
+
+        //type != null ? imgType = "image/" + type.toLowerCase() : '';
+        image.onload = function() {
+            var w = image.width > imgMaxW ? imgMaxW : image.width;
+            var h = w * image.height / image.width;
+
+            var canvas = document.createElement('canvas')
+            canvas.width = w
+            canvas.height = h
+
+            var context = canvas.getContext('2d')
+            context.drawImage(image, 0, 0, w, h)
+            var url = canvas.toDataURL(imgType)
+            canvas1.drawImage(canvas, x, y, w, h)
+                // canvas1.restore();
+
+        }
+
+        image.src = goods.goodsImg;
+        // canvas.drawImage(layer1, 0, 0, 280, 300)
+
+    }
+
+    function saveImg(canvas) {
+        var tempSrc = canvas.toDataURL("image/png", 1.0);
+        var aElem = document.createElement('a');
+        var name = "分享海报";
+
+        // 创建一个单击事件
+        var event = new MouseEvent('click')
+
+        // 将a的download属性设置为我们想要下载的图片名称，若name不存在则使用‘下载图片名称’作为默认名称
+        aElem.download = name || '下载图片名称'
+            // 将生成的URL设置为a.href属性
+        aElem.href = tempSrc
+
+        // 触发a的单击事件
+        aElem.dispatchEvent(event)
+            //var svaeHref = document.getElementById("save_href");
+            // svaeHref.
+            // svaeHref.href = tempSrc;
+            //var img = document.getElementById('save_img');
+            //img.src = tempSrc; //yuran
+    }
+
+    function textWrap(ctx, str, defWidth, x, y, lineHeight, fontsize, fontweight, fillStyle, fontstyle) {
+        fillStyle != null && (ctx.fillStyle = fillStyle);
+        fontweight != null && (ctx.lineWidth = fontweight);
+        fontstyle != null && (ctx.font = fontstyle);
+        // ctx.font = "48px serif";
+        let currentLineWidth = 0;
+        let lastSubStrIndex = 0;
+        let linenum = 0;
+        lineHeight = lineHeight + y;
+        for (let i = 0; i < str.length; i++) {
+            currentLineWidth += ctx.measureText(str[i]).width;
+            if (currentLineWidth > defWidth) {
+                ctx.fillText(str.substring(lastSubStrIndex, i), x, lineHeight);
+                lineHeight += fontsize;
+                currentLineWidth = 0;
+                lastSubStrIndex = i;
+                linenum++;
+            }
+            if (i == str.length - 1) {
+                linenum++
+                ctx.fillText(str.substring(lastSubStrIndex, i + 1), x, lineHeight)
+            }
+        }
+
+        return {
+            width: defWidth,
+            height: linenum == 0 ? 0 : linenum == 1 ? lineHeight : lineHeight + fontsize
+        }
+    }
+
+    function layer() {
+        var layer1 = document.createElement('canvas');
+        layer1.width = 800;
+        layer1.height = 600;
+        var layer1_canvas = layer1.getContext('2d');
+
+        //.......
+        //https://zhidao.baidu.com/question/1695087727595675468.html
+        //.....
+        canvas.save() //用来显示的canvas
+        canvas.globalCompositeOperation = "destination-over"; //设置多个图层如何混合，这个可以百度canvas混合模式，这个和PS是相近的
+        canvas.drawImage(layer1, 0, 0, 800, 600, 0, 0, 800, 600)
+        canvas.drawImage(layer2, 0, 0, 800, 600, 0, 0, 800, 600)
+        canvas.restore();
+    }
+
+    //https://blog.csdn.net/fxss5201/article/details/79691923
+    function imgToCircle(ctx, x, y, radius, imgMaxW, imgsrc, fillStyle, strokeStyle) {
+
+
+        let image = new Image()
+            // 解决跨域 Canvas 污染问题
+        image.setAttribute('crossOrigin', 'anonymous');
+        let imgType = "image/png";
+        // let paths = imgurl.split(".");
+        // let type = (paths && paths.length > 0 ? paths[paths.length - 1] : null);
+        // if (paths && paths.length > 1 && name == null) {
+        //     name = paths[paths.length - 2]
+        // }
+
+        //type != null ? imgType = "image/" + type.toLowerCase() : '';
+        image.onload = function() {
+            var w = image.width > imgMaxW ? imgMaxW : image.width;
+            var h = w * image.height / image.width;
+
+            var canvas = document.createElement('canvas')
+            canvas.width = w
+            canvas.height = h
+
+            var context = canvas.getContext('2d')
+            context.drawImage(image, 0, 0, w, h)
+            var url = canvas.toDataURL(imgType)
+
+            // strokeStyle != null && (ctx.strokeStyle = strokeStyle);
+            // fillStyle != null && (ctx.fillStyle = fillStyle);
+            ctx.save()
+            ctx.beginPath();
+            ctx.arc(x + radius, y + radius, radius, 0, 2 * Math.PI, false);
+
+            ctx.fill();
+            ctx.clip();
+            ctx.drawImage(image, x, y, w, h)
+            ctx.restore();
+
+        }
+
+        image.src = imgsrc;
+        // canvas1.clip();
+        //     canvas1.drawImage(canvas, x, y - 10, w, h + 20)
+        //     canvas1.restore();
+    }
+
+    function bottomLayer(ctx, x, y, radius, imgMaxW, imgsrc) {
+        //bottom
+
+        let image = new Image()
+            // 解决跨域 Canvas 污染问题
+        image.setAttribute('crossOrigin', 'anonymous');
+        let imgType = "image/png";
+        // let paths = imgurl.split(".");
+        // let type = (paths && paths.length > 0 ? paths[paths.length - 1] : null);
+        // if (paths && paths.length > 1 && name == null) {
+        //     name = paths[paths.length - 2]
+        // }
+
+        //type != null ? imgType = "image/" + type.toLowerCase() : '';
+        image.onload = function() {
+            var w = image.width > imgMaxW ? imgMaxW : image.width;
+            var h = w * image.height / image.width;
+
+            var canvas = document.createElement('canvas')
+            canvas.width = w
+            canvas.height = h
+
+            var context = canvas.getContext('2d')
+            context.drawImage(image, 0, 0, w, h)
+            var url = canvas.toDataURL(imgType)
+
+            // strokeStyle != null && (ctx.strokeStyle = strokeStyle);
+            // fillStyle != null && (ctx.fillStyle = fillStyle);
+            ctx.save()
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            //ctx.arc(x + radius, y + radius, radius, 1 * Math.PI, 1.5 * Math.PI, false);
+            ctx.lineTo(x + w, y);
+            //ctx.arc(x + w - 1 * radius, radius + y, radius, 1.5 * Math.PI, 2 * Math.PI, false);
+            ctx.lineTo(x + w, y + h - 1 * radius);
+            ctx.arc(x + w - 1 * radius, y + h - 1 * radius, radius, 0, 0.5 * Math.PI, false);
+            ctx.lineTo(x + radius, y + h);
+            ctx.arc(x + radius, y + h - radius, radius, 0.5 * Math.PI, 1 * Math.PI, false);
+            ctx.lineTo(x, y);
+            ctx.fill();
+            ctx.clip();
+            ctx.drawImage(image, x, y, w, h)
+            ctx.restore();
+
+        }
+
+        image.src = imgsrc;
+    }
+    var butSave = document.getElementById("save");
+    butSave.onclick = function() {
+        saveImg(canvas)
+    }
+    var paintbtn = document.getElementById("paint");
+    paintbtn.onclick = function() {
+        paint()
+    }
+</script>
+
+</html>
