@@ -18,6 +18,11 @@
     </p>
 
     <canvas id="draw"></canvas>
+    <div>
+        
+        <button style="position: relative;left: 270px;" class="button-balanced" id="paint">paint</button>
+        <button style="position: relative;left: 300px;" class="button-balanced" id="save">save</button>
+    </div>
 </body>
 <script src="canvasdraw.js">
 </script>
@@ -150,7 +155,13 @@
             },
         ]
     }
-    var canvas = new CanvasDraw(options);
+    var canvas = null;
+    document.getElementById('save').onclick = function(){
+        canvas.downloadImg()
+    }
+    document.getElementById('paint').onclick = function(){
+        canvas= new CanvasDraw(options);
+    }
 </script>
 
 </html>

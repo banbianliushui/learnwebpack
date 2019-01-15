@@ -8,6 +8,7 @@
 class CanvasDraw {
   cache = {};
   ctx = null;
+  canvas = null;
   data = {
     defaultFontSize: 12,
     defaultColor: '#ffffff',
@@ -34,8 +35,9 @@ class CanvasDraw {
       canvas = document.createElement('canvas');
       document.body.appendChild(canvas);
     }
-    canvas = document.getElementById(this.data.domId);
+  canvas = document.getElementById(this.data.domId);
     this.ctx = canvas.getContext('2d');
+    this.canvas =canvas;
     this.initViews();
   }
 
@@ -601,6 +603,7 @@ class CanvasDraw {
 
       return new Promise((resolve, reject) => {
         const img = new Image();
+        img.setAttribute('crossOrigin', 'anonymous');
         img.onload = res => {
           console.log(res);
           let target = res.target;
@@ -667,6 +670,30 @@ class CanvasDraw {
       this.ctx.clearRect(0, 0, this.width, this.height);
     }
   }
+   downloadImg(name) {
+   // var tempSrc = this.canvas.toDataURL("image/png", 1.0);
+   //var canvas  = document.getElementById(this.data.domId);
+   var tempSrc = this.canvas.toDataURL("image/png", 1.0);
+    var aElem = document.createElement('a');
+    
+
+    // 创建一个单击事件
+    var event = new MouseEvent('click')
+
+    // 将a的download属性设置为我们想要下载的图片名称，若name不存在则使用‘下载图片名称’作为默认名称
+    aElem.download = name || '下载图片名称'
+        // 将生成的URL设置为a.href属性
+    aElem.href = tempSrc
+
+    // 触发a的单击事件
+    aElem.dispatchEvent(event)
+        //var svaeHref = document.getElementById("save_href");
+        // svaeHref.
+        // svaeHref.href = tempSrc;
+        //var img = document.getElementById('save_img');
+        //img.src = tempSrc; //yuran
+}
+
 }
 
 // emoji判断
