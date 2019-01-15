@@ -1,10 +1,16 @@
 //https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html
 //https://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
+/*未完成
+1.头像背景图  图片后加背景
+
+
+*/
 class CanvasDraw {
   cache = {};
   ctx = null;
   data = {
     defaultFontSize: 12,
+    defaultColor: '#ffffff',
     showCanvas: false,
     width: 100,
     height: 100,
@@ -60,8 +66,12 @@ class CanvasDraw {
         this.drawImage(views[i]);
       } else if (views[i].type == 'text') {
         this.drawText(views[i]);
-      } else if (views[i].type == 'roundRect') {
-        this.drawRoundRect(views[i]);
+      } else if (views[i].type == 'shape') {
+          if( views[i].shape=='roundRect'){
+            this.drawRoundRect(views[i]);
+          }
+        
+        
       } else if (views[i].type === 'msgRect') {
         this.drawMsgRoundRect(views[i]);
       }
@@ -93,6 +103,7 @@ class CanvasDraw {
       font = null
     } = params;
 
+    fontSize = this.getFontSize(font);
     let tempRange = this.data.tempBlockPositionRange;
 
     let adjustobj = this.adjustLeftTop({ range: range, left, top });
@@ -104,27 +115,32 @@ class CanvasDraw {
     this.ctx.textAlign = textAlign;
     this.ctx.fillStyle = color;
     let totalHeight = fontSize;
-    let maxLineWidth = (this.ctx.measureText(content).width > width ? width : this.ctx.measureText(content).width);
-    if (!font) {
-      font = fontSize + 'px ' + (fontWeight ? ' ' + fontWeight : '') + (fontFamliy ? ' ' + fontFamliy : '');
-    }
+
     let newIndent = indent === null ? 0 : indent;
     if (indent) {
       if (typeof indent != 'number') {
-        let font = '';
+        let indentfont = '';
         if (indent.font) {
-          font = indent.font;
+          indentfont = indent.font;
         } else {
-          font = indent.fontSize ? indent.fontSize + 'px' : this.data.defaultFontSize + 'px';
+          indentfont = indent.fontSize ? indent.fontSize + 'px' : this.data.defaultFontSize + 'px';
         }
-        newIndent = this.ctx.measureText(indent.content);
+        this.ctx.save();
+        this.ctx.font = indentfont;
+        newIndent = this.ctx.measureText(indent.content).width;
         newIndent = newIndent + (indent.otherWidth ? indent.otherWidth : 0);
+        this.ctx.restore();
       }
     }
     let lineNum = 1;
     let fillTop = top;
     let fillText = '';
+    if (!font) {
+      font =
+        (fontWeight ? ' ' + fontWeight : ' normal ') + ' ' + fontSize + 'px ' + (fontFamliy ? ' ' + fontFamliy : '');
+    }
     this.ctx.font = font;
+    let maxLineWidth = this.ctx.measureText(content).width > width ? width : this.ctx.measureText(content).width;
 
     if (width == null) {
       //自动扩展
@@ -172,10 +188,10 @@ class CanvasDraw {
                   content: newFillText
                 });
                 fillText = '';
+                i = content.length;
                 break;
               }
             }
-            //  }
           }
           this.ctx.fillText(fillText, lineNum == 1 ? left + newIndent : left, fillTop);
           this.drawTextDecoration({
@@ -215,7 +231,16 @@ class CanvasDraw {
     }
     this.ctx.restore();
   }
-
+  getFontSize(font) {
+    let reg = new RegExp(/(\d*)px/g);
+    if (font) {
+      let res = reg.exec(font);
+      if (res[1]) {
+        return res[1];
+      }
+    }
+    return this.data.defaultFontSize;
+  }
   drawTextDecoration({ left = 0, top = 0, textDecoration = null, color = null, fontSize = 12, content = null } = {}) {
     let decoration = textDecoration;
     if (textDecoration != null && typeof textDecoration == 'object') {
@@ -247,6 +272,7 @@ class CanvasDraw {
     this.ctx.fillRect(left, top, width, height);
     this.ctx.restore();
   }
+
   drawMsgRoundRect(params) {
     let {
       left = 0,
@@ -279,15 +305,15 @@ class CanvasDraw {
     let h = height;
     if (h == 0 && measure != null) {
       let result = this.computeTextLine(measure.content, null, measure.width, 0, measure.fontSize);
-      if (result.strArr.length > measure.MaxLineNumber) {
-        h = measure.MaxLineNumber * measure.lineHeight + measure.otherHeight;
+      if (result.strArr.length > measure.maxLineCount) {
+        h = measure.maxLineCount * measure.lineHeight + measure.otherHeight;
       } else {
         h = (result.strArr.length == 0 ? 1 : result.strArr.length) * measure.lineHeight + measure.otherHeight;
       }
     }
 
-    strokeStyle != null && this.ctx.setStrokeStyle(strokeStyle);
-    fillStyle != null && this.ctx.setFillStyle(fillStyle);
+    strokeStyle != null && (this.ctx.strokeStyle=strokeStyle);
+    fillStyle != null && (this.ctx.fillStyle=fillStyle);
 
     this.ctx.save(); // 先保存状态 已便于画完圆再用
     this.ctx.beginPath();
@@ -317,13 +343,47 @@ class CanvasDraw {
     }
   }
   drawRoundRect(params) {
-    const { left, top, width, height, radius, fillStyle, strokeStyle } = params;
+    let {
+      left = 0,
+      top = 0,
+      width = 0,
+      height = 0,
+      radius = 0,
+      fillStyle = null,
+      strokeStyle = null,
+      shadowStyle = null,
+      range = null,
+      isClip=false
+    } = params;
     let x = left;
     let y = top;
     let w = width;
     let h = height;
-    strokeStyle != null && this.ctx.setStrokeStyle(strokeStyle);
-    fillStyle != null && this.ctx.setFillStyle(fillStyle);
+    let adjustobj = this.adjustLeftTop({ range: range, left, top });
+    left = adjustobj.left;
+    top = adjustobj.top;
+    //let tempRange = this.data.tempBlockPositionRange;
+    this.ctx.save();
+    //如果背景圆角矩形需要根据文本宽高设置
+    if (w == 0 && measure != null && measure.to == 'width') {
+      //一行
+      measure.fontSize && this.ctx.setFontSize(measure.fontSize);
+      let contentW = this.ctx.measureText(measure.content).width;
+      maxLineWidth > contentW || maxLineWidth <= 0 ? (w = contentW) : (w = maxLineWidth);
+      w = w + (measure.otherWidth ? measure.otherWidth : 0);
+    }
+
+    if (h == 0 && measure != null && (measure.to == 'height' || measure.to == null)) {
+      //多行
+      let result = this.computeTextLine(measure.content, null, measure.width, 0, measure.fontSize);
+      if (result.strArr.length > measure.maxLineCount) {
+        h = measure.maxLineCount * measure.lineHeight + measure.otherHeight;
+      } else {
+        h = (result.strArr.length == 0 ? 1 : result.strArr.length) * measure.lineHeight + measure.otherHeight;
+      }
+    }
+    //strokeStyle != null && (this.ctx.strokeStyle=strokeStyle);
+    //fillStyle != null && (this.ctx.fillStyle=fillStyle);
     let radiuslist = [];
     if (typeof radius == 'number') {
       radiuslist = [radius, radius, radius, radius];
@@ -341,7 +401,27 @@ class CanvasDraw {
     this.ctx.lineTo(x + radiuslist[3], y + h);
     this.ctx.arc(x + radiuslist[3], y + h - radiuslist[3], radiuslist[3], 0.5 * Math.PI, 1 * Math.PI, false);
     this.ctx.lineTo(x, y + radiuslist[0]);
-    this.ctx.fill();
+    if(shadowStyle){ 
+        this.ctx.shadowOffsetX =shadowStyle.shadowOffsetX ? shadowStyle.shadowOffsetX : 0;
+        this.ctx.shadowOffsetY =shadowStyle.shadowOffsetY ? shadowStyle.shadowOffsetY : 0;
+        this.ctx.shadowColor =shadowStyle.shadowColor ? shadowStyle.shadowColor : 0;
+        this.ctx.shadowBlur =shadowStyle.shadowBlur ? shadowStyle.shadowBlur : 0;
+    }
+     
+    
+    fillStyle&&( this.ctx.fillStyle=fillStyle ,this.ctx.fill());
+    strokeStyle&&( this.ctx.strokeStyle=strokeStyle ,this.ctx.stroke());
+   // this.ctx.fill();
+    if(!isClip){
+        this.ctx.restore();
+    }else{
+        this.ctx.clip();
+    }
+    
+    if (params.range) {
+        this.adjustElemRange({ range: params.range, left: left, top: top, width: width, height: height });
+      }
+     
   }
   drawImage(params) {
     this.ctx.save();
@@ -371,7 +451,7 @@ class CanvasDraw {
     });
     left = adjustobj.left;
     top = adjustobj.top;
-    let tempRange = this.data.tempBlockPositionRange;
+    //let tempRange = this.data.tempBlockPositionRange;
 
     if (mode && mode == 'aspectFill') {
       //短边展示
@@ -406,8 +486,8 @@ class CanvasDraw {
     // } else if (bgShape && bgShape == 'roundRect') {
     // }
     if (radius != null) {
-      this.drawRoundRect({ left, top, width, height, radius });
-      this.ctx.clip();
+      this.drawRoundRect({ left, top, width, height, radius ,isClip:true});
+      
     }
     //radius
     //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
@@ -418,10 +498,16 @@ class CanvasDraw {
     }
     this.ctx.restore();
   }
-  drawCircle(x, y, radius) {
+  drawCircle(params) {
+      let {left, top, radius,fillStyle=null,strokeStyle=null,lineWidth=null} = params;
     this.ctx.save();
     this.ctx.beginPath();
-    this.ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+    this.ctx.arc(left, top, radius, 0, Math.PI * 2, false);
+    lineWidth&&( this.ctx.lineWidth=lineWidth);
+    fillStyle&&( this.ctx.fillStyle=fillStyle ,this.ctx.fill());
+    strokeStyle&&( this.ctx.strokeStyle=strokeStyle ,this.ctx.stroke());
+   
+
   }
   //range:{row,col,referRow|referCol|referAlign}
   adjustLeftTop(params) {

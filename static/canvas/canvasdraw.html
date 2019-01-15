@@ -10,12 +10,12 @@
 
 <body>
     <p>
-            1.  emoji(绘文字)
-            https://segmentfault.com/a/1190000007594620
+        1. emoji(绘文字)
+        https://segmentfault.com/a/1190000007594620
     </p>
-<p>
+    <p>
 
-</p>
+    </p>
 
     <canvas id="draw"></canvas>
 </body>
@@ -24,66 +24,131 @@
 <script>
     var options = {
         domId: "draw",
-        height:400,
-        width:400,
+        height: 400,
+        width: 400,
         views: [{
-            type: 'image',
-            url: 'https://asset.imuge.net/FuC81_A-g00zyUsbm2xv5MHPx3Su',
-            left: 0,
-            top: 0,
-            width: 50,
-            height: 50,
-            range: {
-                row: 1,
-                col: 1
+                type: 'image',
+                url: 'https://asset.imuge.net/FuC81_A-g00zyUsbm2xv5MHPx3Su',
+                left: 0,
+                top: 0,
+                width: 50,
+                height: 50,
+                range: {
+                    row: 1,
+                    col: 1
 
-            }
+                }
 
-        },  {
-            type: 'text',
-            color: '#000000',
-            content: '发的订单🌲的📚🌹烦纠纷解决',
-            maxLineCount:4,
-            width:40,
-            left: 1,
-            top: 66,
-            range: {
-                row: 2,
-                col: 1
-            }
-        },
-        {
-            type: 'text',
-            color: '#000000',
-            content: '加粗加粗是吧',
-            maxLineCount:4,
-            width:50,
-            left: 5,
-            top: 1,
-            fontWeight:'bold',
-            range: {
-                row: 2,
-                col: 2,
-                referRow:2,
-                referCol:1,
-                referAlign:'leftBottom'
-            }
-        },
-        {
-            type: 'image',
-            url: 'https://asset.imuge.net/FuC81_A-g00zyUsbm2xv5MHPx3Su',
-            left: 100,
-            top: 0,
-            width: 50,
-            height: 50,
-            radius:25,
-            range: {
-                row: 3,
-                col: 1
+            }, {
+                type: 'text',
+                color: '#000000',
+                content: 'emjio图像🌲📚自动换行🌹对的',
+                maxLineCount: 4,
+                width: 46,
+                left: 1,
+                top: 66,
+                range: {
+                    row: 2,
+                    col: 1
+                }
+            },
+            {
+                type: 'text',
+                color: '#000000',
+                content: '加粗加粗',
+                maxLineCount: 4,
+                width: 50,
+                left: 5,
+                top: 1,
+                font: '12px bold',
+                //fontWeight:'bold',
+                range: {
+                    row: 2,
+                    col: 2,
+                    referRow: 2,
+                    referCol: 1,
+                    referAlign: 'leftBottom'
+                }
+            },
+            {
+                type: 'text',
+                color: '#ff0000',
+                content: '首行空出是的是的是的是的是的',
+                maxLineCount: 3,
+                width: 50,
+                left: 5,
+                top: 1,
+                fontSize: 12,
 
-            }
-        },
-    ]
+                indent: {
+                    content: '加粗加粗',
+                    font: '12px bold',
+                    otherWidth: 8
+                    //fontSize:12
+                },
+                //fontWeight:'bold',
+                range: {
+                    row: 2,
+                    col: 3,
+                    referRow: 2,
+                    referCol: 1,
+                    referAlign: 'leftBottom'
+                }
+            },
+            {
+                type: 'image',
+                url: 'https://asset.imuge.net/FuC81_A-g00zyUsbm2xv5MHPx3Su',
+                left: 100,
+                top: 0,
+                width: 50,
+                height: 50,
+                radius: 25,
+                // radiusWidth:3,
+                // radiusColor:'#ff0000',
+                range: {
+                    row: 3,
+                    col: 1
+
+                }
+            },
+            {
+                type: 'shape',
+                shape: 'roundRect',
+                left: 160,
+                width: 60,
+                height: 40,
+                radius: 20,
+                fillStyle: '#ff0000',
+                shadowStyle: {
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 4,
+                    shadowBlur: 6,
+                    shadowColor: 'black',
+                },
+                range: {
+                    row: 3,
+                    col: 4
+
+                }
+
+            },
+            {
+                type: 'text',
+                color: '#000000',
+                content: 'emjio图像🌲📚自动换行🌹对的',
+                maxLineCount: 4,
+                width: 46,
+                left: 1,
+                top: 3,
+                range: {
+                    row: 2,
+                    col: 1,
+                    referRow: 3,
+                    referCol: 4,
+                    referAlign: 'leftBottom'
+                }
+            },
+        ]
     }
     var canvas = new CanvasDraw(options);
 </script>
