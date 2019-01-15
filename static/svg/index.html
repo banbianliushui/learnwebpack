@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<!-- https://www.cnblogs.com/yangshifu/p/9318434.html -->
+<!-- https://www.yiibai.com/svg/icons.html -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes" />
+</head>
+
+<body>
+    <div>
+        <p>svg有个特点，在默认情况下，会调整这个viewBox的大小，让这个viewBox正好能被放进svg里去。</p>
+        <svg width="50" height="50">
+        <circle cx="20" cy="20" r="15" stroke="red" stroke-width="2" fill="green"/>
+      </svg>
+    </div>
+    <div>
+        <p>
+            reserveAspectRatio维持外观比例。 即使不显示声明这个preserveAspectRatio属性，viewBox也是会有这个属性的默认设置的，即preserveAspectRatio="xMidYMid meet"
+        </p>
+        <p>
+            stroke-dasharray属性用来设置描边的点划线的图案范式。就是设置实线和虚线的宽度。即有或者没有线段的长度。 stroke-dashoffset则指定了dash模式到路径开始的距离。
+        </p>
+        <p>
+            （1）.stroke-dasharray属性值是一个数列，既可以是普通数字也可以是百分比。 （2）.数值之间可以用逗号或者空格分隔，用来规定短线和缺口的长度。 （3）.如果提供了奇数个数值，则数列重复一次，从而变成偶数个数值。
+        </p>
+        <p>
+            strokelinecap属性定义不同类型的开放路径的终结：stroke-linecap="butt" round square
+        </p>
+        SVG之ViewBox https://segmentfault.com/a/1190000009226427
+
+        <svg>
+        <circle id="fresh"   fill="white" stroke-linecap="round" transform="rotate(50 24 24)"  cx="24" cy="24" r='20' stroke="red" stroke-width='5' stroke-dasharray="46.215926 15.215926" >
+            <animateTransform attributeName="transform" begin="fresh.click" dur="10s" type="rotate" from="0 2 160" to="360 160 160" repeatCount="indefinite"/>
+           <!-- <animate id="fan" begin="fresh.click" end="fresh.click+4s" dur="4s"  attributeName="transform" from="rotate(0  24 24)"  to="rotate(360  24 24)"></animate>  -->
+        </circle>
+      </svg>
+
+
+    </div>
+
+</body>
+
+</html>
+
+</html>
+
+</html>
+
+</html>

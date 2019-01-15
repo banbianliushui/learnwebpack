@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+width="200px" height="200px" viewBox="0 0 100 100" 
+preserveAspectRatio="xMidYMid" class="lds-dual-ring" 
+style="background: none;">
+<circle cx="50" cy="50" 
+id="fresh"
+ fill="white" stroke-linecap="round" r="40"
+  stroke-width="4" stroke="#eca611" 
+  stroke-dasharray="62.83185307179586 62.83185307179586" 
+  transform="rotate(324.525 50 50)">
+  <animateTransform  begin="fresh.click"  attributeName="transform"
+   type="rotate" calcMode="linear" 
+   values="0 50 50;360 50 50" keyTimes="0;1"
+    dur="1s" repeatCount="indefinite"/>
+    </circle>
+    </svg>

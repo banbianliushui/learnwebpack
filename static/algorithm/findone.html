@@ -1,0 +1,46 @@
+<html>
+
+<head></head>
+
+<body>
+    <div>
+        给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。 找出那个只出现了一次的元素，要求不增加空间复杂度
+    </div>
+    <script>
+        var arr = [4, 5, 4, 6, 7, 5, 6];
+
+        function findone(arr) {
+            let len = arr.length;
+            for (var i = 0; i < len - 1; i++) {
+                for (var j = i + 1; j < len; j++) {
+                    if (arr[i] == arr[j]) {
+                        if (j != i + 1) {
+                            let temp = arr[i + 1];
+                            arr[i + 1] = arr[j];
+                            arr[j] = temp;
+                            i++;
+                        }
+                        break;
+                    }
+                }
+                if (j == len) {
+                    return arr[i];
+                }
+            }
+        }
+
+        //console.log(findone(arr))
+        arr = [4, 5, 4, 6, 9, 5, 6];
+
+        function findone1(arr) {
+            let c = arr[0];
+            for (var i = 1; i < arr.length; i++) {
+                c = c ^ arr[i];
+            }
+            return c;
+        }
+        console.log(findone1(arr))
+    </script>
+</body>
+
+</html>

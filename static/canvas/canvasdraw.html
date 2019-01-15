@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes" />
+    <title>canvas绘图</title>
+
+</head>
+
+<body>
+    <p>
+            1.  emoji(绘文字)
+            https://segmentfault.com/a/1190000007594620
+    </p>
+<p>
+
+</p>
+
+    <canvas id="draw"></canvas>
+</body>
+<script src="canvasdraw.js">
+</script>
+<script>
+    var options = {
+        domId: "draw",
+        height:400,
+        width:400,
+        views: [{
+            type: 'image',
+            url: 'https://asset.imuge.net/FuC81_A-g00zyUsbm2xv5MHPx3Su',
+            left: 0,
+            top: 0,
+            width: 50,
+            height: 50,
+            range: {
+                row: 1,
+                col: 1
+
+            }
+
+        },  {
+            type: 'text',
+            color: '#000000',
+            content: '发的订单🌲的📚🌹烦纠纷解决',
+            maxLineCount:4,
+            width:40,
+            left: 1,
+            top: 66,
+            range: {
+                row: 2,
+                col: 1
+            }
+        },
+        {
+            type: 'text',
+            color: '#000000',
+            content: '加粗加粗是吧',
+            maxLineCount:4,
+            width:50,
+            left: 5,
+            top: 1,
+            fontWeight:'bold',
+            range: {
+                row: 2,
+                col: 2,
+                referRow:2,
+                referCol:1,
+                referAlign:'leftBottom'
+            }
+        },
+        {
+            type: 'image',
+            url: 'https://asset.imuge.net/FuC81_A-g00zyUsbm2xv5MHPx3Su',
+            left: 100,
+            top: 0,
+            width: 50,
+            height: 50,
+            radius:25,
+            range: {
+                row: 3,
+                col: 1
+
+            }
+        },
+    ]
+    }
+    var canvas = new CanvasDraw(options);
+</script>
+
+</html>

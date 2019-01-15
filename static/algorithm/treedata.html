@@ -1,0 +1,135 @@
+<html>
+
+<head></head>
+
+<body>
+    https://mp.weixin.qq.com/s/LiiLriz6yWzY_6-ETYbRSw
+    <div>
+        将如下扁平对象，转为树形对象。parent字段为空字符串的节点为根节点：
+        <pre>
+    var input = {
+      h3: {
+        parent: 'h2',
+        name: '副总经理(市场)'
+      },
+      h1: {
+        parent: 'h0',
+        name: '公司机构'
+      },
+      h7: {
+        parent: 'h6',
+        name: '副总经理(总务)'
+      },
+      h4: {
+        parent: 'h3',
+        name: '销售经理'
+      },
+      h2: {
+        parent: 'h1',
+        name: '总经理'
+      },
+      h8: {
+        parent: 'h0',
+        name: '财务总监'
+      },
+      h6: {
+        parent: 'h4',
+        name: '仓管总监'
+      },
+      h5: {
+        parent: 'h4',
+        name: '销售代表'
+      },
+      h0: {
+        parent: '',
+        name: 'root'
+      }
+    };
+</pre> 这个需求在前端其实也很实际，示例中的对象是一个公司组织结构图。如果需求是让你在前端用svg之类的技术画出这样一张图，就需要这个功能。（另外我想到的一种应用场景，就是在前端展示类似windows资源管理器的文件树）
+    </div>
+    <pre>
+    var plain2Tree = function (obj) {
+      var key, res
+      for(key in obj) {
+        var parent = obj[key].parent
+        if(parent === '') {
+          res = obj[key]
+        } else {
+          obj[parent][key] = obj[key]
+        }
+      }
+      return res
+    }
+</pre>
+
+
+    <script>
+        var plain2Tree = function(obj) {
+                var key, res
+                for (key in obj) {
+                    var parent = obj[key].parent
+                    if (parent === '') {
+                        res = obj[key]
+                    } else {
+                        obj[parent][key] = obj[key]
+                    }
+                }
+                return res
+            }
+            //段代码，就是利用了JavaScript里面的引用类型，之后的思路，和操作指针没什么区别，就是构造一棵树。
+
+
+        function tree1(targetobj, from) {
+            let to = [];
+            let root = {};
+            root[from] = {};
+            let i = 0;
+            to.push("");
+            let parent = [root];
+            while (true) {
+                let len = to.length;
+                if (len == i) {
+                    return parent;
+                }
+                for (var k = i; k < len; k++) {
+                    let current = parent[parent.length - 1]
+                    for (var o in targetobj) {
+                        if (targetobj[o].parent == to[k]) {
+                            to.push(o);
+                            if (current[to[k]] == null) {
+                                current[to[k]] = {};
+                                console.log("meiy ")
+                            }
+                            current[to[k]][o] = targetobj[o];
+                        }
+                    }
+                    if (current[to[k]] != null)
+                        parent.push(current[to[k]])
+
+                    i++;
+                }
+
+            }
+        }
+        let res1 = tree1(company, "");
+
+        function tree(tagobj, from, result) {
+            let tag = 0;
+
+            for (var o in tagobj) {
+                if (tagobj[o].parent == from) {
+                    if (result[from] == null) {
+                        result[from] = {}
+                    }
+                    result[from][o] = tagobj[o];
+                    tag = 1;
+
+                    tree(tagobj, o, result[from]);
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>
