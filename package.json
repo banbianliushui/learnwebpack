@@ -6,7 +6,7 @@
     "jsnext:main": "es/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "webpack --config config/webpack.config.js",
+        "start": "webpack --profile --json --config config/webpack.config.js",
         "dev": "webpack-dev-server --config config/webpack.config.js",
         "dev4": "webpack-serve ./config/webpack.config.js --no-reload",
         "build4": "webpack-cli"
@@ -29,6 +29,7 @@
         "precss": "^3.1.2",
         "sass-loader": "^7.1.0",
         "style-loader": "^0.23.0",
+        "typescript": "^2.9.2",
         "vue-loader": "^15.4.2",
         "vue-template-compiler": "^2.5.17",
         "webpack": "^4.20.2",

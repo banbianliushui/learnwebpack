@@ -1,0 +1,195 @@
+<html>
+  <body>
+    <img src="threedata.jpeg">
+    <script>
+    var s = [-1,0,1,2,-1,-4];
+    
+    function sumthree(data,tag=0){
+      // let twosum=[];
+      // for(var i=0;i<data.length-1;i++){
+      //   for(var j=i+1;j<data.length;j++){
+      //     twosum.push(data[i]+data[j])
+      //   }
+      // }
+      let result=[];
+      let norepeat={}
+      for(var i=0;i< data.length-2;i++){
+        for(var j=i+1;j<data.length-1;j++){
+         for(var k=j+1;k<data.length;k++){
+         // twosum.push(data[i]+data[j])
+         if(data[i]+data[j]+data[k]==tag){
+           let m1 = data[i];
+           let m2 = data[j];
+           let m3 = data[k];
+           if(m2<m1){
+              let m = m2;
+              m2= m1;
+              m1=m;
+
+           }
+           if(m3<m2){
+            let m = m3;
+              m3= m2;
+              m2=m;
+           }
+           if(m2<m1){
+              let m = m2;
+              m2= m1;
+              m1=m;
+
+           }
+          if(! norepeat[m1+''+m2+''+m3]){
+            norepeat[m1+''+m2+''+m3]=true
+            result.push([m1,m2,m3])
+          }
+         
+         }
+        }
+        }
+      }
+      return result
+    }
+
+
+
+
+    /**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+     let result=[];
+    if(!nums||nums.length<3){
+          return result
+      }
+    let repeat=[];
+    let data=[];
+    let repeatmap={};
+    for(var i=0;i< nums.length;i++){
+        if(!repeatmap[nums[i]]){
+             repeatmap[nums[i]]=1
+        }else if(repeatmap[nums[i]]==1){
+            repeatmap[nums[i]]++;
+            repeat.push(nums[i])
+        }else{
+             repeatmap[nums[i]]++;
+        }      
+    }
+    
+    for(var o in repeatmap){
+      
+          data.push(Number(o))
+     
+    }
+    
+    
+    
+      let norepeat={}
+      
+      for(var i=0;i< data.length-2;i++){
+        for(var j=i+1;j<data.length-1;j++){
+         for(var k=j+1;k<data.length;k++){
+         // twosum.push(data[i]+data[j])
+         if(data[i]+data[j]+data[k]==0){
+          //  let m1 = data[i];
+          //  let m2 = data[j];
+          //  let m3 = data[k];
+          //  if(m2<m1){
+          //     let m = m2;
+          //     m2= m1;
+          //     m1=m;
+          //  }
+          //  if(m3<m2){
+          //   let m = m3;
+          //     m3= m2;
+          //     m2=m;
+          //  }
+          //  if(m2<m1){
+          //     let m = m2;
+          //     m2= m1;
+          //     m1=m;
+
+          //  }
+          // if(! norepeat[m1+''+m2+''+m3]){
+          //   norepeat[m1+''+m2+''+m3]=true
+            result.push([data[i],data[j],data[k]])
+         // }
+         
+         }
+        }
+        }
+      }
+    
+    for(var c=0;c<repeat.length;c++){
+        for(var f=0;f<data.length;f++){
+            if(2*repeat[c]+data[f]==0&&data[f]!=0){
+                result.push([repeat[c],repeat[c],data[f]])
+            } 
+        }
+       
+    }
+        
+        if(repeatmap['0']>=3){
+            result.push([0,0,0])
+        }
+      return result
+};
+function threeSum1(nums){
+  let res =[];
+  let length = nums.length;
+  nums.sort((a,b)=>a-b)
+  if(length<=2){
+    return res
+  }
+  if(nums[0]<=0&&nums[length-1]>=0){
+    for(let i=0; i<length-2;i++){
+      let j = i+1;
+      let k= length-1;
+      while(j<k){
+        if(nums[i]+nums[j]+nums[k]===0){
+          res.push([nums[i],nums[j],nums[k]]);
+       
+           while(j<k&&nums[j]===nums[j+1]){
+              j++;
+           }
+           while(j<k&&nums[k]===nums[k-1]){
+              k--;
+           }
+           j++;
+           k--;
+         }else if(nums[i]+nums[j]+nums[k]<0){
+             j++;
+        }else{
+          k--;
+        }
+      }
+      
+      while(i<length-2&&nums[i]===nums[i+1]){
+        i++;
+      }
+
+    }
+  }
+return res;
+}
+threeSum(s)
+    console.log(sumthree(s))
+    var s2=[
+  -1,
+  -4,
+  -6,
+  3,
+  8,
+  9,
+  1,
+  -5,
+  0,
+  2,
+  -10,
+  12,
+  4
+];
+console.log(sumthree(s2,1))
+    </script>
+  </body>
+</html>

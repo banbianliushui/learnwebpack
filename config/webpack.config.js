@@ -1,5 +1,5 @@
 const path = require('path')
-
+debugger;
 //const ExtractTextPlugin = require('extract-text-webpack-plugin')
 //loader加载css文件，tonggplugin将主任bundle.js文件里的css提取到单独到文件
 //DeprecationWarning: Tapable.apply is deprecated. Call apply on the plugin directly instead

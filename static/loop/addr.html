@@ -1,0 +1,73 @@
+<html>
+
+<head>地址栏头部</head>
+
+<body>
+  <div>
+
+    作者：W、peach
+    链接：https://juejin.im/post/5c49b822f265da6142743a87
+    来源：掘金
+    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+  </div>
+  <div>
+
+  </div>
+  <script>
+    // var f = ['🌑', '🌒', '🌓', '🌔', '🌝', '🌖', '🌗', '🌘'];
+
+    // function loop() {
+    //   location.hash = f[Math.floor((Date.now() / 100) % f.length)];
+
+    //   setTimeout(loop, 50);
+    // }
+
+    // function loop() {
+    //     var s = '',
+    //         p;
+
+    //     p = Math.floor(((Math.sin(Date.now()/300)+1)/2) * 100);
+
+    //     while (p >= 8) {
+    //         s += '█';
+    //         p -= 8;
+    //     }
+    //     s += ['⠀','▏','▎','▍','▌','▋','▊','▉'][p];
+
+    //     location.hash = s;
+    //     setTimeout(loop, 50);
+    // }
+
+
+    // loop();
+    var video;
+
+    function formatTime(seconds) {
+      var minutes = Math.floor(seconds / 60),
+        seconds = Math.floor(seconds - (minutes * 60));
+
+      return ('0' + minutes).substr(-2) + ':' + ('0' + seconds).substr(-2);
+    }
+
+    function renderProgressBar() {
+      var s = '',
+        l = 15,
+        p = Math.floor(video.currentTime / video.duration * (l - 1)),
+        i;
+
+      for (i = 0; i < l; i++) {
+        if (i == p) s += '◯';
+        else if (i < p) s += '─';
+        else s += '┄';
+      }
+
+      location.hash = '╭' + s + '╮' + formatTime(video.currentTime) + '╱' + formatTime(video.duration);
+    }
+
+    video = document.getElementById('video');
+    video.addEventListener('timeupdate', renderProgressBar);
+  </script>
+
+</body>
+
+</html>

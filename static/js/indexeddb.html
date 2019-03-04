@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <script>
+      
+    var request = window.indexedDB.open("orders",7);
+    var db = null;
+    request.onsuccess = function(event){
+      db = event.target.result;
+      if(db.objectStoreNames.contains("order_data")){
+        var orderStore = db.transaction("order_data","readwrite").objectStore("order_data");
+
+      }
+    }  
+    request.onupgradeneeded = function(event){
+      db = event.target.result;
+      if(!db.objectStoreNames.contains("order_data")){
+        var orderStore = db.createObjectStore("order_data",{keyPath:"orderId"});
+        insertOrders(orderStore)
+      }
+    }
+
+    function insertOrders(orderStore){
+      var data ={
+        orderId:'3344',
+        text:'iieuuuu'
+      }
+      //异步，返回一个IDBRequest,有onsuccess回调
+      orderStore.add(data).onsuccess = function(event){
+        console.log(event.target.result)
+      }
+    }
+    </script>
+  </body>
+</html>

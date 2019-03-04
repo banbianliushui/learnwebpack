@@ -1,0 +1,129 @@
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
+    color="#111">
+  <title>CodePen - Dynamic Image Colorizing with &lt;input type="color"&gt;</title>
+
+
+
+
+  <style>
+    html, body { height: 100%; }
+  body { margin: 0; }
+  
+  img {
+      height: 100%;
+      width: 100%;
+      -o-object-fit: cover;
+         object-fit: cover;
+  }
+  /*
+  mix-blend-mode默认情况下是会混合所有比起层叠顺序低的元素的，如果我们希望值混合某一两个元素，而不是全部，该怎么办呢？可以试试使用CSS3 isolation:isolate
+
+  mix-blend-mode: normal;          //正常
+mix-blend-mode: multiply;        //正片叠底
+mix-blend-mode: screen;          //滤色
+mix-blend-mode: overlay;         //叠加
+mix-blend-mode: darken;          //变暗
+mix-blend-mode: lighten;         //变亮
+mix-blend-mode: color-dodge;     //颜色减淡
+mix-blend-mode: color-burn;      //颜色加深
+mix-blend-mode: hard-light;      //强光
+mix-blend-mode: soft-light;      //柔光
+mix-blend-mode: difference;      //差值
+mix-blend-mode: exclusion;       //排除
+mix-blend-mode: hue;             //色相
+mix-blend-mode: saturation;      //饱和度
+mix-blend-mode: color;           //颜色
+mix-blend-mode: luminosity;      //亮度
+
+mix-blend-mode: initial;         //初始
+mix-blend-mode: inherit;         //继承
+mix-blend-mode: unset;           //复原
+  */
+  input { 
+      /* removes default styling from input color element */
+      padding: 0;
+      border: none; 
+      /* makes input (color swatch) 100% size of container */
+      position: absolute;
+      width: 100%; 
+      height: 100%;
+      /* mix blend mode makes the color of the swatch alter the image behind it. */
+      mix-blend-mode: hue; /* try screen, multiply or other blend modes for different effects */
+      cursor: pointer;
+  }
+  
+  /* removes default styling from input color element */
+  ::-webkit-color-swatch {
+      border: none;
+  }
+  
+  ::-webkit-color-swatch-wrapper {
+      padding: 0;
+  }
+  
+  ::-moz-color-swatch,
+  ::-moz-focus-inner {
+      border: none;
+  }
+  
+  ::-moz-focus-inner {
+      padding: 0;
+  }
+  
+  
+  /* Image Credit */
+  a {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: #6B6BFF;
+      background: black;
+      display: block;
+      padding: 0 8px 3px;
+      font-size: 15px;
+      text-decoration: none;
+  }
+      </style>
+
+  <script>
+    window.console = window.console || function(t) {};
+  </script>
+
+
+
+  <script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+  </script>
+
+
+</head>
+
+<body translate="no">
+
+  <!-- CLICK TO CHANGE COLOR -->
+  <input type="color" value="#0000ff"> 
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/18515/9284591662_38b0438418_h.jpg">
+  <!-- Image Credit -->
+  <a href="https://www.flickr.com/photos/betabit/9284591662/" target="_blank">Photo by Jackson Faddis 🔗</a>
+
+
+
+
+<!-- 
+
+  <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script> -->
+
+
+
+
+</body>
+
+</html>

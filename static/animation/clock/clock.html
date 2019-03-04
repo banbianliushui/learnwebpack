@@ -1,0 +1,110 @@
+<html>
+
+<head>
+  <style>
+    .base {
+      stroke: #000000;
+      stroke-width: 4;
+      fill: #FFFFFF
+    }
+
+    .pointer {
+      opacity: 0.5;
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10;
+      transform-origin: 400px 300px
+    }
+
+    #second {
+      stroke-width: 6;
+    }
+
+    #minute {
+      stroke-width: 12;
+    }
+
+    #hour {
+      stroke-width: 18;
+    }
+
+    /* ************************************************** */
+    /*把线性linear去掉，改成steps(60) */
+    .second {
+      animation: second steps(60) 60s infinite;
+    }
+
+    .minute {
+      animation: minute linear 3600s infinite;
+    }
+
+    .hour {
+      animation: hour linear 216000s infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="now" style="margin-left:280px; font-family: Arial; font-size:20px; z-index: 999; position: absolute; top:0px">
+
+  </p>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    width="800px" height="600px" viewBox="0 0 800 600" style="enable-background:new 0 0 800 600;" xml:space="preserve">
+
+    <circle class="base" cx="400" cy="300" r="200" />
+    <line class="pointer second" id="second" x1="400" y1="300" x2="400" y2="120" />
+    <line class="pointer minute" id="minute" x1="400" y1="300" x2="400" y2="160" />
+    <line class="pointer hour" id="hour" x1="400" y1="300" x2="400" y2="220" />
+  </svg>
+  <script>
+    function $(id) {
+      var idValue = document.getElementById(id);
+      return idValue;
+    }
+
+
+
+    var dt = new Date();
+    //时针度数修正,增加分针对应的度数
+    var hourDeg = dt.getHours() * 30 + dt.getMinutes() * 0.5;
+    //分针度数修正，增加秒针对应的度数
+    var minuteDeg = dt.getMinutes() * 6 + dt.getSeconds() * 0.1;
+    var secondDeg = dt.getSeconds() * 6;
+
+    //以下为显示系统时间用，可以删除
+
+    function now() {
+      dt = new Date();
+      $("now").innerText = "当前时间  " + dt.getHours() + "：" + dt.getMinutes() + "：" + dt.getSeconds();
+    }
+    now();
+    setInterval(now, 1000);
+
+    //创建一个新的CSS style标签
+    var style = document.createElement("style");
+    style.type = "text/css";
+    //定义一个新的style标签内容的函数，动画规则名称和初始度数作为参数
+    function newKeyFrames(name, degree) {
+      var keyFrames = "@keyframes " + name + " {\
+  0% {transform: rotate(" + degree +
+        "deg);}\
+  100%{transform:rotate(" + (degree + 360) + "deg)}}";
+      //因为是新的style标签内容中不断增加新定义的动画规则，所以改成+=
+      style.innerHTML += keyFrames;
+    }
+
+    //时针的动画规则名称和初始旋转度数作为参数传入
+    newKeyFrames("hour", hourDeg);
+    //分针的动画规则名称和初始旋转度数作为参数传入
+    newKeyFrames("minute", minuteDeg);
+    //秒针的动画规则名称和初始旋转度数作为参数传入
+    newKeyFrames("second", secondDeg);
+
+    //把新的动画规则标签追加到svg元素中，这里使用要灵活，如果CSS是放到SVG外面的，则需要修改
+    document.getElementsByTagName('svg')[0].appendChild(style);
+  </script>
+</body>
+
+</html>

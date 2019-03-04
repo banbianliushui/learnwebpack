@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TypeScript Greeter</title>
+</head>
+
+<body>
+    <script src="studentgreeter.js"></script>
+</body>
+<script>
+    let company = {
+        h3: {
+            parent: 'h2',
+            name: '副总经理(市场)'
+        },
+        h1: {
+            parent: 'h0',
+            name: '公司机构'
+        },
+        h7: {
+            parent: 'h6',
+            name: '副总经理(总务)'
+        },
+        h4: {
+            parent: 'h3',
+            name: '销售经理'
+        },
+        h2: {
+            parent: 'h1',
+            name: '总经理'
+        },
+        h8: {
+            parent: 'h0',
+            name: '财务总监'
+        },
+        h6: {
+            parent: 'h4',
+            name: '仓管总监'
+        },
+        h5: {
+            parent: 'h4',
+            name: '销售代表'
+        },
+        h0: {
+            parent: '',
+            name: 'root'
+        }
+    }
+
+
+    function tree(tagobj, from, result) {
+        let tag = 0;
+
+        for (var o in tagobj) {
+            if (tagobj[o].parent == from) {
+                if (result[from] == null) {
+                    result[from] = {}
+                }
+                result[from][o] = tagobj[o];
+                tag = 1;
+
+                tree(tagobj, o, result[from]);
+            }
+        }
+
+    }
+
+    // let result = {};
+    // tree(company, "", result)
+    // console.log(result);
+
+    function tree1(targetobj, from) {
+        let to = [];
+        let root = {};
+        root[from] = {};
+        let i = 0;
+        to.push("");
+        let parent = [root];
+        while (true) {
+            let len = to.length;
+            if (len == i) {
+                return parent;
+            }
+            for (var k = i; k < len; k++) {
+                let current = parent[parent.length - 1]
+                for (var o in targetobj) {
+                    if (targetobj[o].parent == to[k]) {
+                        to.push(o);
+                        if (current[to[k]] == null) {
+                            current[to[k]] = {};
+                            console.log("meiy ")
+                        }
+                        current[to[k]][o] = targetobj[o];
+                    }
+                }
+                if (current[to[k]] != null)
+                    parent.push(current[to[k]])
+
+                i++;
+            }
+
+        }
+    }
+    let res1 = tree1(company, "");
+    console.log(res1)
+</script>
+
+</html>

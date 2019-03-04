@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <button id="cancel">取消timeout</button>
+  </body>
+</html>
+<script>
+  var i =0;
+var timer = setTimeout(() => {
+  console.log("你被答应了",++i)
+}, 2000);
+document.getElementById("cancel").onclick = function(){
+  clearTimeout(timer) 
+
+}
+</script>

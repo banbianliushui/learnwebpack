@@ -1,0 +1,15 @@
+<html>
+  <head></head>
+  <body>
+    <script>
+      Object.create1 = function(prototype){
+    var cls = function(){}
+    cls.prototype = prototype;
+    return new cls;
+}
+      
+var o1=Object.create1(null)
+console.log(o1)
+      </script>
+  </body>
+</html>

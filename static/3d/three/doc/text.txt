@@ -1,0 +1,15 @@
+  
+  three.js使用https://threejs.org/docs/index.html#manual/zh/introduction/Creating-a-scene
+  
+  http://192.168.6.119:8080/examples/#webgl_geometry_convex
+       室内光影变化  http://192.168.6.119:8080/examples/#webgl_hdr
+    
+        室内光影变化1  http://192.168.6.119:8080/examples/#webgl_loader_texture_exr
+      室内360 http://192.168.6.119:8080/examples/#webgl_panorama_cube
+      全景 http://192.168.6.119:8080/examples/#webgl_panorama_equirectangular
+    
+     物理风吹衣 http://192.168.6.119:8080/examples/#webgl_physics_cloth
+ css3d:    http://192.168.6.119:8080/examples/#css3d_panorama
+   webvr 暂时未提供 http://192.168.6.119:8080/examples/#webvr_panorama
+   地图控制  http://192.168.6.119:8080/examples/#misc_controls_map
+

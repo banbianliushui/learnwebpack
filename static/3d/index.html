@@ -1,0 +1,149 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0" />
+  <script src="./lib/three.min.js"></script>
+  <script src="./lib/photo-sphere-viewer.js">
+  </script>
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div>
+    室内全景图 https://vr.justeasy.cn/view/4963120.html
+
+  </div> -->
+
+  <div id="container">
+
+
+  </div>
+  <script>
+
+    function simpledraw(){
+      var div = document.getElementById('container');
+      var PSV = new PhotoSphereViewer({
+       // panorama:'http://f.3dxy.com/sub/Overmodel/pic/2018/0504/10/1805041049_94470_750x680_0.jpg',
+        panorama:'./img/house2.jpg',
+					//panorama: 'http://tassedecafe.org/wp-content/uploads/2013/01/parc-saint-pierre-amiens.jpg',
+					container: div,
+					time_anim: 8000,
+					navbar: true,
+					navbar_style: {
+						backgroundColor: 'rgba(58, 67, 77, 0.7)'
+					},
+				});
+    }
+    simpledraw()
+    window.onload = function () {
+      // draw()
+     // document.getElementById('go').addEventListener('click', loadPredefinedPanorama, false);
+    }
+
+    
+    // Load the predefined panorama
+    function loadPredefinedPanorama(evt) {
+      evt.preventDefault();
+
+      // Loader
+      var loader = document.createElement('div');
+      loader.className = 'loader';
+
+      // Panorama display
+      var div = document.getElementById('container');
+      div.style.height = '30px';
+
+      var PSV = new PhotoSphereViewer({
+        // Path to the panorama
+        panorama: 'sun.jpg',
+
+        // Container
+        container: div,
+
+        // Deactivate the animation
+        time_anim: false,
+
+        // Display the navigation bar
+        navbar: true,
+
+        // Resize the panorama
+        size: {
+          width: '100%',
+          height: '500px'
+        },
+
+        // HTML loader
+        loading_html: loader,
+
+        // Overlay
+        overlay: {
+          image: 'overlay.png',
+          size: {
+            width: '42px'
+          },
+          position: {
+            x: 'right',
+            y: 'top'
+          }
+        }
+      });
+    }
+
+    function draw() {
+      var loader = document.createElement('div');
+      loader.className = 'loader';
+
+      // Panorama display
+      var div = document.getElementById('container');
+      div.style.height = '30px';
+      var PSV = new PhotoSphereViewer({
+        panorama: 'sun.jpg',
+        container: div,
+        // Deactivate the animation
+        time_anim: false,
+
+        // Display the navigation bar
+        navbar: true,
+
+        // Resize the panorama
+        size: {
+          width: '100%',
+          height: '500px'
+        },
+
+        // HTML loader
+        loading_html: loader,
+
+        // Overlay
+        overlay: {
+          image: 'img/overlay.png',
+          size: {
+            width: '42px'
+          },
+          position: {
+            x: 'right',
+            y: 'top'
+          }
+        }
+
+      })
+    }
+  </script>
+
+</body>
+
+</html>

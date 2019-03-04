@@ -1,0 +1,79 @@
+<html>
+
+<body>
+  <script>
+    function ListNode(val) {
+      this.val = val;
+      this.next = null;
+    }
+    var addTwoNumbers = function (l1, l2) {
+      //console.log(ListNode)
+      // ListNode l3 =new ListNode(null);
+      var long1 = null;
+      let jinw = 0;
+      var longs = [];
+      while (l1 != null && l2 != null) {
+        // let current['next'] = long1
+        let val = l1.val + l2.val;
+        val = val + jinw;
+        if (val >= 10) {
+          jinw = Math.floor(Number(val / 10));
+          val = val - jinw * 10;
+
+
+        } else {
+          jinw = 0
+
+        }
+
+        longs.push(new ListNode(val))
+        l1 = l1.next;
+        l2 = l2.next;
+      }
+      while (l2 != null) {
+        let val = l2.val + jinw;
+        if (val >= 10) {
+          jinw = Math.floor(Number(val / 10));
+          val = val - jinw * 10;
+
+        } else {
+          jinw = 0
+        }
+        longs.push(new ListNode(val))
+        l2 = l2.next;
+
+      }
+      while (l1 != null) {
+        let val = l1.val + jinw;
+        if (val >= 10) {
+          jinw = Math.floor(Number(val / 10));
+          val = val - jinw * 10;
+
+        } else {
+          jinw = 0
+        }
+        longs.push(new ListNode(val))
+
+        l1 = l1.next;
+
+      }
+      if (jinw != 0) {
+        longs.push(new ListNode(jinw))
+      }
+      for (let i = 0; i < longs.length - 1; i++) {
+        longs[i].next = longs[i + 1]
+      }
+
+      return longs[0];
+    };
+    var l1 = new ListNode(5);
+    //l1.next = new ListNode( 4);
+    //l1.next.next = new ListNode( 3);
+    var l2 = new ListNode(5);
+    //l2.next = new ListNode( 6);
+    //l2.next.next = new ListNode( 4);
+    console.log(addTwoNumbers(l1, l2))
+  </script>
+</body>
+
+</html>
