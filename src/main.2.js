@@ -1,23 +1,17 @@
-//threejs直接操作html
+//自定义全局状态vuex的入口
 require('./assets/main.css'); //直接写会报错，webpack不支持原生解析css文件,需要loader机制,或者用下面的方式
 //require('style-loader!css-loader?minimize!./assets/main.css') 
 require('./assets/base.scss');
 require('./assets/newpostcss.css');
 
 import Vue from 'vue'
-//import vueindex from './pages/vueindex.vue'
-import routerindex from './pages/routerindex.vue'
+import vueindex from './pages/vueindex.vue'
 const show = require('./show.js')
-const animate = require('./js/threejs/test.js')
-
 //start import 测试vuex
 import Vuex from './libs/myVuex/index'
 //end import 测试vuex
-import {VueRouter} from './libs/myRouter/vueRouteruse.js'
-
 show('Webpack')
-animate()
-
+//
 //start import 测试vuex
 const pageA = {
     state: {
@@ -77,37 +71,11 @@ let store = new Vuex.Store({
         }
     }
 }, Vue)
-
-const Home = {
-    template: '<div>home</div>'
-};
-const Book = {
-    template: '<div>book</div>'
-};
-const Movie = {
-    template: '<div>movie</div>'
-};
-const routes = [{
-        path: '/',
-        component: Home
-    },
-    {
-        path: '/book',
-        component: Book
-    },
-    {
-        path: '/movie',
-        component: Movie
-    }
-];
-const router = new VueRouter(Vue, {
-    routes
-});
 //end import 测试vuex
 new Vue({
     el: '#app',
     store,
-    render: h => h(routerindex)
+    render: h => h(vueindex)
 })
 
 export var say = function () {

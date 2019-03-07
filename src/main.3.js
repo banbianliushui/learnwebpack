@@ -1,4 +1,4 @@
-//threejs直接操作html
+//自定义路由单页面
 require('./assets/main.css'); //直接写会报错，webpack不支持原生解析css文件,需要loader机制,或者用下面的方式
 //require('style-loader!css-loader?minimize!./assets/main.css') 
 require('./assets/base.scss');
@@ -8,16 +8,14 @@ import Vue from 'vue'
 //import vueindex from './pages/vueindex.vue'
 import routerindex from './pages/routerindex.vue'
 const show = require('./show.js')
-const animate = require('./js/threejs/test.js')
-
 //start import 测试vuex
 import Vuex from './libs/myVuex/index'
 //end import 测试vuex
 import {VueRouter} from './libs/myRouter/vueRouteruse.js'
+import ThreePage from "./pages/views/three/index.vue"
 
 show('Webpack')
-animate()
-
+//
 //start import 测试vuex
 const pageA = {
     state: {
@@ -78,9 +76,9 @@ let store = new Vuex.Store({
     }
 }, Vue)
 
-const Home = {
-    template: '<div>home</div>'
-};
+// const Home = {
+//     template: '<div>home</div>'
+// };
 const Book = {
     template: '<div>book</div>'
 };
@@ -89,11 +87,11 @@ const Movie = {
 };
 const routes = [{
         path: '/',
-        component: Home
+        component: ThreePage
     },
     {
         path: '/book',
-        component: Book
+        component: ThreePage
     },
     {
         path: '/movie',

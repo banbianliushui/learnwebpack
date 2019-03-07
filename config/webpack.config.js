@@ -1,5 +1,6 @@
 const path = require('path')
-debugger;
+const webpack = require("webpack");
+//debugger;
 //const ExtractTextPlugin = require('extract-text-webpack-plugin')
 //loader加载css文件，tonggplugin将主任bundle.js文件里的css提取到单独到文件
 //DeprecationWarning: Tapable.apply is deprecated. Call apply on the plugin directly instead
@@ -13,7 +14,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 //配置详情： https://webpack.js.org/configuration/#options
 const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin')
-
 module.exports = {
     mode: "development",
     //webpack-dev-server的配置，只有通过它启动webpack，配置中的devServer才会生效。
@@ -63,9 +63,12 @@ module.exports = {
     //webpack寻找相对露肩文件时以context为根目录，context默认为之行启动webpack时所在的当前工作目录。
 
     context: path.resolve(__dirname, '../'),
-    entry: './src/main.js',
+    entry: {
+        //vendor:['three'],
+        app:'./src/main.js'
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, '../dist'),
         //发布到线上的所有资源的URL前缀，
         /*  publicPath:path.resolve(__dirname,'../static'),//放到指定目录下 */
@@ -191,7 +194,7 @@ module.exports = {
             commonjs: 'lodash',
             amd: 'lodash',
             root: '_' // indicates global variable
-        },
+        }
     },
     plugins: [
         //[name]_[contenthash:8].css  打包后在dist文件夹下生成main_1a4cac39.css文件，然后将该文件引入index.html;
@@ -202,8 +205,33 @@ module.exports = {
         }),
         new VueLoaderPlugin(),
 
-        new HotModuleReplacementPlugin(),
+        new HotModuleReplacementPlugin()
+       
 
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            chunks:'all'
+        //   chunks: 'async',
+        //   minSize: 30000,
+        //   maxSize: 0,
+        //   minChunks: 1,
+        //   maxAsyncRequests: 5,
+        //   maxInitialRequests: 3,
+        //   automaticNameDelimiter: '~',
+        //   name: true,
+        //   cacheGroups: {
+        //     vendors: {
+        //       test: /[\\/]node_modules[\\/]/,
+        //       priority: -10
+        //     },
+        //     default: {
+        //       minChunks: 2,
+        //       priority: -20,
+        //       reuseExistingChunk: true
+        //     }
+        //   }
+        }
+      }
 
 }

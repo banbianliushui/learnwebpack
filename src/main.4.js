@@ -1,4 +1,4 @@
-//threejs直接操作html
+//threejs引入后js文件直接操作dom，使用require
 require('./assets/main.css'); //直接写会报错，webpack不支持原生解析css文件,需要loader机制,或者用下面的方式
 //require('style-loader!css-loader?minimize!./assets/main.css') 
 require('./assets/base.scss');
