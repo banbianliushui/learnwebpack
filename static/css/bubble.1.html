@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="http://www.softwhy.com/" />
+  <title>蚂蚁部落</title>
+  <style>
+    body{
+      padding-top:60px;
+    }
+    .btn1 {
+      position:relative;
+    }
+
+    .btn1:before {
+      /* display:block;
+      position:absolute;
+      content:'' */
+    }
+
+    .btn1.active:before {
+      /* color: brown; */
+      content: '-1';
+      display: block;
+      position: absolute;
+      animation: topBubbles ease-in-out 1s forwards;
+      /* top:40px;
+      color: blue; */
+
+    }
+
+    @keyframes topBubbles {
+      0% {
+        /* background-position: ; */
+        /* top: 0px; */
+        opacity: 0;
+        transform: translateY(0);
+      }
+
+      50% {
+        /* top: -15px; */
+        opacity: 1;
+        transform: translateY(-15px)
+      }
+
+      100% {
+        /* top: -30px; */
+        opacity: 0;
+        transform:translateY(-30px)
+      }
+    }
+
+    /* .btn1:active {
+      transform: scale(0.9);
+      background-color: #e60074;
+      box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+    } */
+
+    /*animation: lick 3s .8s linear 1;*/
+    @keyframes lick {
+      0% {
+        opacity: 0.5;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <ul class="nav" id="nav">
+    <li class="nav-2">
+      <a href="#" class="hover">
+        <i class="i-1">-1</i>
+        <i class="i-2">-1</i>
+        <i class="i-3">-1</i>
+        <i class="i-4">-1</i>
+        <i class="i-5">-1</i>
+        <i class="i-6">-1</i>
+        <i class="i-7">-1</i>
+      </a>
+    </li>
+  </ul> -->
+  <div class="nav" id="nav">
+    <button id="btn1" class="btn1" style="color:green;">点击1
+      <!-- <i class="b-1">-1</i> -->
+    </button>
+    <button id="btn2">点击1
+      <!-- <i class="b-2">-1</i> -->
+    </button>
+  </div>
+  <script>
+    var btn1 = document.getElementById('btn1')
+    btn1.onclick = function (e) {
+      e.preventDefault();
+
+      let target = e.target;
+      target.classList.remove('active')
+      target.classList.add('active')
+      setTimeout(() => {
+        e.target.classList.remove('active')
+      }, 1200)
+    }
+  </script>
+</body>
+
+</html>

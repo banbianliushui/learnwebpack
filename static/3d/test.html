@@ -1,0 +1,59 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <style>
+    .wrap {
+      overflow: hidden;
+    }
+
+    .item-list {
+      display: flex;
+      overflow-x: auto
+    }
+
+    .item {
+      flex: none
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="container">
+    <div  id="wrap" class="wrap">
+      <div class="item-list">
+        <div class="item">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:teal;">斯柯达积分打开纠纷</div>
+        <div class="item">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:greenyellow">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:yellow">斯柯达积分打开纠纷</div>
+        <div class="item">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:rebeccapurple">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:blue">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:red">斯柯达积分打开纠纷</div>
+        <div class="item">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:salmon">斯柯达积分打开纠纷</div>
+        <div class="item">斯柯达积分打开纠纷</div>
+        <div class="item" style="color:sienna">斯柯达积分打开纠纷</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    
+document.getElementById("container").addEventListener('mousemove',function(e){//web pc
+  e.preventDefault()
+})
+document.getElementById("wrap").addEventListener('mousemove',function(e){//web pc
+  e.preventDefault()
+})
+document.getElementById("container").addEventListener('touchmove',function(e){//移动端  
+  e.preventDefault()
+})
+document.getElementById("wrap").addEventListener('touchmove',function(e){
+//  e.preventDefault()
+})
+
+  </script>
+</body>
+
+</html>

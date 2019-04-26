@@ -34,6 +34,7 @@ module.exports = {
         // allowedHosts:['localhost','host.com','.host2.com'],
         //配置是否关闭用于DNS重新绑定的http请求的host检查。默认只接收来自本地的请求，关闭后可以接收来自任意host的情趣。
         //和--host 0.0.0.0 搭配使用，可以让其他设备访问自己的本地服务，访问直接通过ip地址而不是host 访问，所以需要关闭host检查
+        
         disableHostCheck: true,
         //http2 和service worker必须运行在https上，需切换称https服务
         https: false,

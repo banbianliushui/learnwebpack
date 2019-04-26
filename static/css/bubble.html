@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="http://www.softwhy.com/" />
+  <title>蚂蚁部落</title>
+  <style>
+    .nav li {
+      width: 130px;
+      height: 150px;
+      list-style: none;
+      position: relative;
+    }
+
+    .nav li a {
+      height: 150px;
+      display: block;
+    }
+
+    li a i {
+      position: absolute;
+      bottom: 26px;
+      left: 20px;
+      width: 14px;
+      height: 14px;
+      opacity: 0;
+      
+      /* background: #000; */
+      border-radius: 2px;
+      box-shadow: 0 0 2px #ff6a82;
+      display: block;
+    }
+
+    .nav li a.hover .i-1 {
+      animation: lightAni1 3s linear infinite;
+    }
+
+    .nav li a.hover .i-2 {
+      animation: lightAni2 3s 1s linear infinite;
+    }
+
+    .nav li a.hover .i-3 {
+      animation: lightAni1 3s 2s linear infinite;
+    }
+
+    .nav li a.hover .i-4 {
+      animation: lightAni1 3s 2.2s linear infinite;
+    }
+
+    .nav li a.hover .i-5 {
+      animation: lightAni3 3s 1.5s linear infinite;
+    }
+
+    .nav li a.hover .i-6 {
+      animation: lightAni2 3s .5s linear infinite;
+    }
+
+    .nav li a.hover .i-7 {
+      animation: lightAni1 3s .8s linear infinite;
+    }
+
+    @keyframes lightAni1 {
+      0% {
+        opacity: 0.5;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(-50px);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+    }
+
+    @keyframes lightAni2 {
+      0% {
+        opacity: 0.5;
+        transform: translate(0, 0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(-10px, -50px);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-20px, -100px);
+      }
+    }
+
+    @keyframes lightAni3 {
+      0% {
+        opacity: 0.5;
+        transform: translate(0, 0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(10px, -50px);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(20px, -100px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="nav">
+    <li class="nav-2">
+      <a href="#" class="hover">
+        <i class="i-1">-1</i>
+        <i class="i-2">-1</i>
+        <i class="i-3">-1</i>
+        <i class="i-4">-1</i>
+        <i class="i-5">-1</i>
+        <i class="i-6">-1</i>
+        <i class="i-7">-1</i>
+      </a>
+    </li>
+  </ul>
+</body>
+
+</html>

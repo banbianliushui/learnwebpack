@@ -10,6 +10,7 @@ import routerindex from './pages/routerindex.vue'
 const show = require('./show.js')
 const animate = require('./js/threejs/test.js')
 
+import videovue from './pages/testvue/video.vue'
 //start import 测试vuex
 import Vuex from './libs/myVuex/index'
 //end import 测试vuex

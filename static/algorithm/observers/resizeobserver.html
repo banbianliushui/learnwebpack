@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://xiaotianxia.github.io/blog/vuepress/js/four_kinds_of_observers.html#demo-%F0%9F%8C%B0%E2%86%93">
+  <style>
+    .wrapper[data-v-89bcd296] {
+      width: 414px;
+      margin: 0 auto;
+      background-color: #eee;
+      box-sizing: border-box;
+    }
+
+    .wrapper .sectionContent[data-v-89bcd296] {
+      position: relative;
+      height: 450px;
+      border: 1px solid #ccc;
+      padding: 40px 0;
+      overflow: auto;
+      -ms-scroll-chaining: none;
+      overscroll-behavior: contain;
+      background-color: #000;
+    }
+
+    .wrapper .list .item[data-v-89bcd296] {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .wrapper .list .item[data-v-89bcd296]:not(:last-child) {
+      border-bottom: 10px solid #576574;
+    }
+
+    .wrapper .list .item[data-v-89bcd296]:first-child {
+      padding-top: 0;
+    }
+
+    .wrapper .item .label[data-v-89bcd296] {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      display: inline-block;
+      max-width: 300px;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 10px;
+      background-color: rgba(237, 20, 60, .4);
+      color: #fff;
+      z-index: 10;
+    }
+
+    .wrapper .item .cover[data-v-89bcd296],
+    .wrapper .item .video[data-v-89bcd296] {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .wrapper .item .cover[data-v-89bcd296],
+    .wrapper .item .video[data-v-89bcd296] {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .wrapper .item .cover.hide[data-v-89bcd296],
+    .wrapper .item .video.hide[data-v-89bcd296] {
+      display: none;
+    }
+
+    .description[data-v-89bcd296] {
+      position: absolute;
+      bottom: 0;
+      color: #fff;
+      background-color: rgba(0, 0, 0, .4);
+      width: 100%;
+      padding: 5px;
+      z-index: 9;
+      font-size: 12px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper" id="wrapper" data-v-89bcd296="">
+    <div class="sectionContent js-content" data-v-89bcd296="">
+      <ul class="list" data-v-89bcd296="">
+        <li class="item js-item" data-v-89bcd296=""><span class="label" data-v-89bcd296="">1(<span class="js-span"
+              data-v-89bcd296="">0.6965517401695251</span>)</span>
+          <div class="cover js-cover" data-v-89bcd296=""><img src="http://poijlzkaq.bkt.clouddn.com/3213214321.png" alt="封面"
+              data-v-89bcd296=""><i class="btn-start el-icon-caret-right" data-v-89bcd296=""></i></div>
+          <div class="video js-video hide" data-v-89bcd296=""><video src="http://poijlzkaq.bkt.clouddn.com/1552895951232209.mp4"
+              muted="muted" data-v-89bcd296=""></video></div>
+          <div class="description" data-v-89bcd296="">
+            <p style="-webkit-box-orient: vertical;" data-v-89bcd296="">大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫呀大花猫大花猫呀大花猫大花猫呀大花猫大花猫呀大花猫大花猫呀大花猫大花猫呀大花猫大花猫呀大花猫</p>
+          </div>
+        </li>
+        <li class="item js-item" data-v-89bcd296=""><span class="label" data-v-89bcd296="">2(<span class="js-span"
+              data-v-89bcd296="">0.6896551847457886</span>)</span>
+          <div class="cover js-cover" data-v-89bcd296=""><img src="http://poijlzkaq.bkt.clouddn.com/143124321.png" alt="封面"
+              data-v-89bcd296=""><i class="btn-start el-icon-caret-right" data-v-89bcd296=""></i></div>
+          <div class="video js-video hide" data-v-89bcd296=""><video src="http://poijlzkaq.bkt.clouddn.com/1552895945898993.mp4"
+              muted="muted" data-v-89bcd296=""></video></div>
+          <div class="description" data-v-89bcd296="">
+            <p style="-webkit-box-orient: vertical;" data-v-89bcd296="">小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟啊小乌龟小乌龟啊小乌龟小乌龟啊小乌龟小乌龟啊小乌龟小乌龟啊小乌龟小乌龟啊小乌龟</p>
+          </div>
+        </li>
+        <li class="item js-item" data-v-89bcd296=""><span class="label" data-v-89bcd296="">3(<span class="js-span"
+              data-v-89bcd296="">0.6896551847457886</span>)</span>
+          <div class="cover js-cover" data-v-89bcd296=""><img src="http://poijlzkaq.bkt.clouddn.com/586337357.png" alt="封面"
+              data-v-89bcd296=""><i class="btn-start el-icon-caret-right" data-v-89bcd296=""></i></div>
+          <div class="video js-video hide" data-v-89bcd296=""><video src="http://poijlzkaq.bkt.clouddn.com/1552896499270164.mp4"
+              muted="muted" data-v-89bcd296=""></video></div>
+          <div class="description" data-v-89bcd296="">
+            <p style="-webkit-box-orient: vertical;" data-v-89bcd296="">哈哈哈哈哈哈哈哈哈哈</p>
+          </div>
+        </li>
+        <li class="item js-item" data-v-89bcd296=""><span class="label" data-v-89bcd296="">4(<span class="js-span"
+              data-v-89bcd296="">0.6793103218078613</span>)</span>
+          <div class="cover js-cover" data-v-89bcd296=""><img src="http://poijlzkaq.bkt.clouddn.com/678976986798.png"
+              alt="封面" data-v-89bcd296=""><i class="btn-start el-icon-caret-right" data-v-89bcd296=""></i></div>
+          <div class="video js-video hide" data-v-89bcd296=""><video src="http://poijlzkaq.bkt.clouddn.com/1552896500269933.mp4"
+              muted="muted" data-v-89bcd296=""></video></div>
+          <div class="description" data-v-89bcd296="">
+            <p style="-webkit-box-orient: vertical;" data-v-89bcd296="">嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿</p>
+          </div>
+        </li>
+        <li class="item js-item" data-v-89bcd296=""><span class="label" data-v-89bcd296="">5(<span class="js-span"
+              data-v-89bcd296="">0.6896551847457886</span>)</span>
+          <div class="cover js-cover" data-v-89bcd296=""><img src="http://poijlzkaq.bkt.clouddn.com/6095487609.png" alt="封面"
+              data-v-89bcd296=""><i class="btn-start el-icon-caret-right" data-v-89bcd296=""></i></div>
+          <div class="video js-video hide" data-v-89bcd296=""><video src="http://poijlzkaq.bkt.clouddn.com/1552896502100868.mp4"
+              muted="muted" data-v-89bcd296=""></video></div>
+          <div class="description" data-v-89bcd296="">
+            <p style="-webkit-box-orient: vertical;" data-v-89bcd296="">呵呵呵呵呵呵呵呵</p>
+          </div>
+        </li>
+        <li class="item js-item" data-v-89bcd296=""><span class="label" data-v-89bcd296="">6(<span class="js-span"
+              data-v-89bcd296="">1</span>)</span>
+          <div class="cover js-cover hide" data-v-89bcd296=""><img src="http://poijlzkaq.bkt.clouddn.com/48666754765.png"
+              alt="封面" data-v-89bcd296=""><i class="btn-start el-icon-caret-right" data-v-89bcd296=""></i></div>
+          <div class="video js-video" data-v-89bcd296=""><video src="http://poijlzkaq.bkt.clouddn.com/1552896503859343.mp4"
+              muted="muted" data-v-89bcd296=""></video></div>
+          <div class="description" data-v-89bcd296="">
+            <p style="-webkit-box-orient: vertical;" data-v-89bcd296="">哈哈哈哈哈哈哈哈哈哈</p>
+          </div>
+        </li>
+        <li class="item js-item" data-v-89bcd296=""><span class="label" data-v-89bcd296="">7(<span class="js-span"
+              data-v-89bcd296=""></span>)</span>
+          <div class="cover js-cover" data-v-89bcd296=""><img src="http://poijlzkaq.bkt.clouddn.com/434689743867.png"
+              alt="封面" data-v-89bcd296=""><i class="btn-start el-icon-caret-right" data-v-89bcd296=""></i></div>
+          <div class="video js-video hide" data-v-89bcd296=""><video src="http://poijlzkaq.bkt.clouddn.com/1552896506605984.mp4"
+              muted="muted" data-v-89bcd296=""></video></div>
+          <div class="description" data-v-89bcd296="">
+            <p style="-webkit-box-orient: vertical;" data-v-89bcd296="">哈哈哈哈哈哈哈哈哈哈</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    /**
+   * 
+   * 
+   * IntersectionObserver接口(从属于Intersection Observer API)为开发者提供了一种可以异步监听目标元素与其祖先或视窗(viewport)交叉状态的手段。祖先元素与视窗(viewport)被称为根(root)。
+
+
+  */
+    window.onload = function () {
+      var $box = document.querySelector('.js-content');
+      var $target = document.querySelector('.js-item')
+
+      function reserveCallback(entries) {
+        let ratio = entries[0].inersectionRatio ,
+        $target = entries[0].target;
+        if(1-ratio<=0.03){
+          onPlay($target)
+        }
+        
+
+      }
+      function onPlay($target){
+
+      }
+      let observer = new IntersectionObserver(reserveCallback, {
+        root: $box,
+        rootMargin: '0px',
+        threshold: [0.7, 0.8, 0.9, 1]
+      })
+      for (let k = 0; k < $target.length; k++) {
+        observer.observe($target[k])
+      }
+
+    }
+    //new ResizeObserver(this.observerCallback).observe(this.$box)) : this.errorMsg = "您的浏览器不支持 ResizeObserver API"
+  </script>
+</body>
+
+</html>
