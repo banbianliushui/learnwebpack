@@ -7,14 +7,18 @@ require('./assets/newpostcss.css');
 import Vue from 'vue'
 //import vueindex from './pages/vueindex.vue'
 import routerindex from './pages/routerindex.vue'
+import screenpicvue from './pages/views/screenpic/index.vue'
 const show = require('./show.js')
 const animate = require('./js/threejs/test.js')
 
-import videovue from './pages/testvue/video.vue'
+//import videovue from './pages/testvue/video.vue'
 //start import 测试vuex
 import Vuex from './libs/myVuex/index'
 //end import 测试vuex
 import {VueRouter} from './libs/myRouter/vueRouteruse.js'
+import FullScreenPic  from './components/fullScreenPic/index.js'
+
+Vue.use(FullScreenPic);
 
 show('Webpack')
 animate()
@@ -79,9 +83,7 @@ let store = new Vuex.Store({
     }
 }, Vue)
 
-const Home = {
-    template: '<div>home</div>'
-};
+
 const Book = {
     template: '<div>book</div>'
 };
@@ -90,7 +92,7 @@ const Movie = {
 };
 const routes = [{
         path: '/',
-        component: Home
+        component: screenpicvue
     },
     {
         path: '/book',

@@ -136,6 +136,9 @@ module.exports = {
             test: /\.scss$/,
             use: ['style-loader', 'css-loader', 'sass-loader']
         }, {
+            test: /\.less$/,
+            use: ["vue-style-loader", "css-loader", "less-loader"]
+        }, {
             test: /\.js$/,
             use: ['babel-loader'],
             include: path.resolve(__dirname, 'src')
