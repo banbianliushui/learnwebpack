@@ -85,7 +85,10 @@ module.exports = {
     //配置模块的解析方式。即配置寻找模块的规则 例如，在ES2015中调用import“lodash”时，解析选项可以更改webpack去寻找“lodash”的位置（参见模块）。
     resolve: {
         alias: { //模块别名设置，用于映射模块
-            components: './src/components',
+          //  components: '/src/components',
+          'Components':  path.resolve(__dirname, '../src/components/'),
+          'Src':  path.resolve(__dirname, '../src/'),
+          'Mock':  path.resolve(__dirname, '../src/mock/'),
             'vue$': 'vue/dist/vue.esm.js' // 用 webpack 1 时需用 'vue/dist/vue.common.js'
 
         },

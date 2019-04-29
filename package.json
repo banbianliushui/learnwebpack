@@ -43,6 +43,7 @@
         "@babel/polyfill": "^7.0.0",
         "log4js": "^3.0.6",
         "three": "^0.102.1",
+        "velocity-animate": "^1.5.2",
         "vue": "^2.5.17"
     }
 }

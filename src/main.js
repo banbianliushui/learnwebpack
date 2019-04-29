@@ -8,8 +8,10 @@ import Vue from 'vue'
 //import vueindex from './pages/vueindex.vue'
 import routerindex from './pages/routerindex.vue'
 import screenpicvue from './pages/views/screenpic/index.vue'
+import customVTranstion from './pages/views/customcomp/custom.vue'
+
 const show = require('./show.js')
-const animate = require('./js/threejs/test.js')
+//const animate = require('./js/threejs/test.js')
 
 //import videovue from './pages/testvue/video.vue'
 //start import 测试vuex
@@ -21,67 +23,8 @@ import FullScreenPic  from './components/fullScreenPic/index.js'
 Vue.use(FullScreenPic);
 
 show('Webpack')
-animate()
+//animate()
 
-//start import 测试vuex
-const pageA = {
-    state: {
-        count: 100
-    },
-    mutations: {
-        incrementA(state) {
-            state.count++
-        }
-    },
-    actions: {
-        incrementAAction(context) {
-            context.commit('incrementA')
-        }
-    }
-}
-const pageB = {
-    state: {
-        count: 500
-    },
-    mutations: {
-        incrementA(state) {
-            state.count++
-        }
-    },
-    actions: {
-        incrementAAction(context) {
-            context.commit('incrementA')
-        }
-    }
-}
-let store = new Vuex.Store({
-    modules: {
-        a: pageA,
-        b: pageB
-    },
-    state: {
-        count: 0
-    },
-    mutations: {
-        incrementFive(state) {
-            // console.log('初始state', JSON.stringify(state));
-            state.count = state.count + 5;
-        },
-        plusSix(state) {
-            state.count = state.count + 6
-        }
-    },
-    getters: {
-        getStatePlusOne(state) {
-            return state.count + 1
-        }
-    },
-    actions: {
-        countPlusSix(context) {
-            context.commit('plusSix')
-        }
-    }
-}, Vue)
 
 
 const Book = {
@@ -96,7 +39,7 @@ const routes = [{
     },
     {
         path: '/book',
-        component: Book
+        component: customVTranstion
     },
     {
         path: '/movie',
@@ -109,7 +52,6 @@ const router = new VueRouter(Vue, {
 //end import 测试vuex
 new Vue({
     el: '#app',
-    store,
     render: h => h(routerindex)
 })
 
